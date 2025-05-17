@@ -1,6 +1,81 @@
 # transport-analyzer
 Analyzing public transport in the Oslo area of Norway
 
+## Project Overview
+This project extracts, transforms, and loads public transport data for Norway into a SQL database, enabling further analysis and dashboarding.
+
+## Quickstart
+
+### 1. Clone the repository
+```sh
+git clone https://github.com/andreberge1/transport-analyzer.git
+cd transport-analyzer
+```
+
+### 2. Set up a virtual environment
+```sh
+python -m venv venv
+venv\Scripts\activate  # On Windows
+# source venv/bin/activate  # On Mac/Linux
+```
+
+### 3. Install dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 4. Configure environment variables
+Copy `.env.example` to `.env` and fill in your database credentials:
+```
+USER=your_db_user
+PASSWORD=your_db_password
+PORT=5432
+DATABASE=your_db_name
+```
+
+### 5. Initialize the database and load data
+This will create the tables and fill them using the ETL pipeline:
+```sh
+python init_db.py
+```
+
+---
+
+## Project Structure
+
+```
+transport-analyzer/
+├── api/           # API calls (e.g., get_stopPlaces, get_operators)
+├── database/      # Database models and engine
+├── pipelines/     # ETL scripts
+├── init_db.py     # Entry point for DB setup and ETL
+├── requirements.txt
+├── .env.example
+└── README.md
+```
+
+---
+
+## How it works
+
+- **Database models** are defined in `database/`.
+- **API calls** are in `api/`.
+- **ETL scripts** in `pipelines/` fetch data from the API and load it into the database.
+- **init_db.py** creates tables and runs the ETL pipeline.
+
+---
+
+## Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## License
+
+[MIT](LICENSE)
+
+
 ## Phase 1: Plan & design
 1. Define the Problem
 * What value are you delivering? (e.g., visualize bus delay patterns)
